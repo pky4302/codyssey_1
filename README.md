@@ -73,7 +73,7 @@ Ubuntu Linux 터미널 기본 명령어 실습
    
    <img width="661" height="45" alt="image" src="https://github.com/user-attachments/assets/5ac1d0c7-2108-40e1-b5f4-bb28d6dc01aa" />
 
-2. ~ 기호는 현재 Linux 사용자의 홈 디렉토리 (pwd의 결과는 Windows 사용자 폴더와 별개인 Linux 사용자 공간입니다.): cd ~
+2. ~ 기호는 현재 Linux 사용자의 홈 디렉토리 (pwd의 결과는 Windows 사용자 폴더와 별개인 Linux 사용자 공간): cd ~
 
    <img width="667" height="70" alt="image" src="https://github.com/user-attachments/assets/c37a5bcb-f07b-4825-97d3-ac326e6f0509" />
 
@@ -130,8 +130,10 @@ Docker 설치
    <img width="554" height="50" alt="image" src="https://github.com/user-attachments/assets/64652a1c-c4ca-4b15-9407-759976af8707" />
 
 2. 현재 Ubuntu 사용자가 Docker 엔진에 접근할 권한 관련 명령어
+   
    2-1. ls -l /var/run/docker.sock => Docker 엔진에 접근하는 소켓 파일의 소유자와 권한
         (root소켓소유자, docker소켓접근가능그룹, 현재사용자)
+   
    <img width="1506" height="94" alt="image" src="https://github.com/user-attachments/assets/fe11963a-7870-4914-81ee-02e8b44621ba" />
 
    2-2. 우분트 도커 그룹에 추가: sudo usermod -aG docker $USER
@@ -162,24 +164,71 @@ Docker 설치
 
    <img width="1318" height="653" alt="image" src="https://github.com/user-attachments/assets/87d8f0a6-3fc0-4f7b-96c9-aa37809763d6" />
 
-    3-5. 최근에 만든 이미지로 컨테이너이름 지정 후 백그라운에서 종료하지 않고 계속 대기하는 컨테이너 생성 및 실행: docker run -d --name my-ubuntu ubuntu:latest sleep infinity
+    3-5. 최근에 만든 이미지로 컨테이너이름(my-ubuntu) 지정 후 백그라운에서 종료하지 않고 계속 대기하는 컨테이너 생성 및 실행: docker run -d --name my-ubuntu ubuntu:latest sleep infinity
 
     <img width="1437" height="598" alt="image" src="https://github.com/user-attachments/assets/7a40753d-4469-4102-bc92-19e55b353636" />
 
 4. 우분트 안에서 또다른 우분트 환경에 들어가기 (도커 컨테이너 내부 들어가기)
 
    4-1. docker exec -it my-ubuntu bash (실행 중인 컨테이너에서 계속 입력 받고 터미널 환경제공, 접속할 컨테이너 명, 실행할 셀 프로그램)
+
+   root@xxxxxxxxxxxx: Docker 컨테이너 내부 환경으로 이동, root는 컨테이너 내부의 관리자 계정, /는 컨테이너의 최상위 디렉터리
    
    <img width="715" height="50" alt="image" src="https://github.com/user-attachments/assets/df698c70-8acd-488b-b4fd-97d962fcc6e6" />
 
-   root@xxxxxxxxxxxx: Docker 컨테이너 내부 환경, root는 컨테이너 내부의 관리자 계정, /는 컨테이너의 최상위 디렉터리
-
    
 
+   4-2. 컨테이너 내부접근: 현재위치확인: pwd, Linux버전: cat /etc/os-release, 파일목록확인: ls -la(숨긴파일까지)
    
+<img width="1005" height="983" alt="image" src="https://github.com/user-attachments/assets/b2f58144-6771-44c6-8d82-cd53706bd577" />     
+
+   4-3. 컨테이너 내부에 파일 만들기: echo "Hello Docker" > hello.txt
+
+<img width="376" height="276" alt="image" src="https://github.com/user-attachments/assets/d1ba6faa-602e-43ab-819e-4152d7b849f9" />
+
+   4-4. 파일내용확인: cat hello.txt
+   
+   <img width="413" height="47" alt="image" src="https://github.com/user-attachments/assets/519d1449-1e0a-46fa-bbe9-ba34781be176" />
+
+   4-5. 컨테이너 접속 종료: exit
+
+   <img width="230" height="35" alt="image" src="https://github.com/user-attachments/assets/0423aa31-a823-48dd-9669-d47aabf8e814" />
+
+5. 실행중인 컨테이너 확인하고 중지하고 다시 실행하고 삭제하기
+
+   5-1. my-ubuntu 컨테이너 확인: docker ps
+
+   <img width="1235" height="69" alt="image" src="https://github.com/user-attachments/assets/771b0dc6-0b0d-4832-805f-7dd08ced6195" />
+
+   5-2. 컨테이너 중지: docker stop my-ubuntu
+
+   <img width="852" height="96" alt="image" src="https://github.com/user-attachments/assets/cb55fbce-016a-4639-ad4d-20e63016d0c0" />
+
+   5-3. 컨테이너 다시 실행: docker start my-ubuntu
+
+   <img width="1224" height="116" alt="image" src="https://github.com/user-attachments/assets/82dc0401-4892-48a7-9131-76e64ea97a73" />
+
+   5-4. 컨테이너 삭제: docker rm -f my-ubuntu
+
+   <img width="619" height="45" alt="image" src="https://github.com/user-attachments/assets/6b4045ff-37dc-49b5-9d79-5a7b7f106582" />
+
+   <img width="1383" height="99" alt="image" src="https://github.com/user-attachments/assets/d3cdfe37-b623-464a-bb4b-ab6405146ab9" />
+
+   컨테이너를 삭제해도 이미지는 남아있음
+
+   <img width="421" height="74" alt="image" src="https://github.com/user-attachments/assets/85341a15-2359-43ef-add0-6aedafc003f7" />
+
+   5-5. 남아있는 이미지 삭제: docker image rm ubuntu:latest
+
+   <img width="970" height="194" alt="image" src="https://github.com/user-attachments/assets/1490b42f-9017-4394-9b74-3b23aa0dd024" />
 
 
-   
+
+
+
+
+
+
 
 
    
