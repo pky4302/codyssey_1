@@ -67,22 +67,60 @@ C:\
     <img width="807" height="176" alt="image" src="https://github.com/user-attachments/assets/49cbc6c2-7191-41b8-8da5-20effe0b4690" />
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-Ubuntu Linux 터미널 명령어
+Ubuntu Linux 터미널 기본 명령어 실습
 
 1. 현재위치: pwd
    
    <img width="661" height="45" alt="image" src="https://github.com/user-attachments/assets/5ac1d0c7-2108-40e1-b5f4-bb28d6dc01aa" />
 
-2. ~ 기호는 현재 Linux 사용자의 홈 디렉토리 (pwd의 결과는 Windows 사용자 폴더와 별개인 Linux 사용자 공간입니다.) : cd ~
+2. ~ 기호는 현재 Linux 사용자의 홈 디렉토리 (pwd의 결과는 Windows 사용자 폴더와 별개인 Linux 사용자 공간입니다.): cd ~
 
    <img width="667" height="70" alt="image" src="https://github.com/user-attachments/assets/c37a5bcb-f07b-4825-97d3-ac326e6f0509" />
 
-3. 폴더생성 : mkdir -p ~/codyssey/practice (-p는 상위폴더 없이도 생성)
+3. 폴더생성: mkdir -p ~/codyssey/practice (-p는 상위폴더 없이도 생성)
 
    <img width="691" height="96" alt="image" src="https://github.com/user-attachments/assets/86d48d5a-9923-46ec-95e9-dada8919e212" />
 
-4. 
+4. 숨김 파일 포함 목록 확인: ls -la (-l은 상세정보표시, -a는 숨김파일확인)
 
+   <img width="696" height="122" alt="image" src="https://github.com/user-attachments/assets/c7581ff0-b5cb-4978-98db-1a521b811c99" />
+
+5. 파일생성: touch hello.txt
+
+   <img width="752" height="100" alt="image" src="https://github.com/user-attachments/assets/1dad5bf9-8c3a-4599-a889-a40fc9d60e63" />
+
+6. 파일내용작성하기: echo "Hello Linux" > hello.txt ( > 기존 내용 덮어쓰기, >> 기존 내용 뒤에 추가) & 파일내용확인하기: cat hello.txt
+
+   <img width="932" height="67" alt="image" src="https://github.com/user-attachments/assets/a5d868ba-550c-44b4-bf68-d09fc9e1f099" />
+
+7. 파일복사: cp hello.txt hello_copy.txt
+
+   <img width="900" height="121" alt="image" src="https://github.com/user-attachments/assets/a9459d43-28c4-4cde-af89-e548aaacb653" />
+
+8. 파일이름변경: mv hello_copy.txt linux_copy.txt (리눅스에서 mv는 파일이동과 이름변경 모두 가능)
+
+   <img width="957" height="119" alt="image" src="https://github.com/user-attachments/assets/c34870da-a859-46ad-9769-241c202c3b4a" />
+
+9. 파일삭제: rm linux.txt_copy.txt
+
+   <img width="777" height="93" alt="image" src="https://github.com/user-attachments/assets/c1f45825-a467-4e8a-9825-fda1c898471d" />
+
+10. 권한실습파일 생성: echo "Permission Test" > permission.txt (파일과 파일내용을 동시에 생성)
+
+   <img width="1034" height="167" alt="image" src="https://github.com/user-attachments/assets/c86acb11-e745-4e89-a5e8-57add87c391b" />
+
+   권한정보
+
+   <img width="811" height="44" alt="image" src="https://github.com/user-attachments/assets/ca20523e-a590-498a-a55b-031d6f00a7f2" />
+
+11. 권한변경: chmod 600 permission.txt (600, 소유자만 읽고 쓰기 가능)
+
+    <img width="860" height="73" alt="image" src="https://github.com/user-attachments/assets/1bb21f31-e431-47e5-8de4-cdc7bf23cc60" />
+
+12. 
+
+
+   
 
 
 
