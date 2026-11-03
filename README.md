@@ -117,7 +117,40 @@ Ubuntu Linux 터미널 기본 명령어 실습
 
     <img width="860" height="73" alt="image" src="https://github.com/user-attachments/assets/1bb21f31-e431-47e5-8de4-cdc7bf23cc60" />
 
-12. 
+---------------------------------------------------------------------------------------------------------------------
+
+Docker 설치
+
+<img width="1330" height="496" alt="image" src="https://github.com/user-attachments/assets/1525c2ba-7cec-4dfb-b38f-1f2bdc27938e" />
+
+<img width="631" height="535" alt="image" src="https://github.com/user-attachments/assets/c46c5151-43f6-4387-9838-de5a146b0257" />
+
+1. Docker 엔진이 Ubuntu에서도 작동확인: docker --version
+
+   <img width="554" height="50" alt="image" src="https://github.com/user-attachments/assets/64652a1c-c4ca-4b15-9407-759976af8707" />
+
+2. 현재 Ubuntu 사용자가 Docker 엔진에 접근할 권한 관련 명령어
+   2-1. ls -l /var/run/docker.sock => Docker 엔진에 접근하는 소켓 파일의 소유자와 권한
+        (root소켓소유자, docker소켓접근가능그룹, 현재사용자)
+   <img width="1506" height="94" alt="image" src="https://github.com/user-attachments/assets/fe11963a-7870-4914-81ee-02e8b44621ba" />
+
+   2-2. 우분트 도커 그룹에 추가: sudo usermod -aG docker $USER
+
+   2-3. 현재 터미널에서 그룹 변경적용: newgrp docker
+
+   2-4. 다음 getent group docker 입력 후 윈도우 파워셀에서 wsl --shutdown하고 다시 우분트에서 id확인
+
+   <img width="1667" height="815" alt="image" src="https://github.com/user-attachments/assets/247aefa2-861f-4304-b45a-31d88b63ce19" />
+
+   
+   
+
+
+
+
+
+
+
 
 
    
