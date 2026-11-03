@@ -142,29 +142,44 @@ Docker 설치
 
    <img width="1667" height="815" alt="image" src="https://github.com/user-attachments/assets/247aefa2-861f-4304-b45a-31d88b63ce19" />
 
+3. 우분트에서 도커 정상 작동되면
+
+   3-1.첫 번째 컨테이너 생성 및 실행 명령어: docker run hello-world
+
+   <img width="510" height="334" alt="image" src="https://github.com/user-attachments/assets/080a67e2-24b0-40f2-b0de-8566601f0394" />
+
+   3-2.이미지와 컨테이너 구분하기: docker images = docker image ls
+
+   <img width="1041" height="605" alt="image" src="https://github.com/user-attachments/assets/f17f0b95-1caa-4cd4-bf8d-0d16ed58f4fb" />
+
+    3-3.컨테이너 확인하기: docker ps -a
+        docker ps: 현재 실행 중인 컨테이너 확인
+        docker ps -a: 종료된 컨테이너까지 모두 확인
+        exit(0) => 컨테이너 실행 정상적 종료
+   <img width="1318" height="76" alt="image" src="https://github.com/user-attachments/assets/de65bca0-e8ba-42e1-9dc5-2dd5303030b0" />
+
+   3-4.my-hello라는 이름의 새 컨테이너 만들기: docker run --name my-hello hello-world
+
+   <img width="1318" height="653" alt="image" src="https://github.com/user-attachments/assets/87d8f0a6-3fc0-4f7b-96c9-aa37809763d6" />
+
+    3-5. 최근에 만든 이미지로 컨테이너이름 지정 후 백그라운에서 종료하지 않고 계속 대기하는 컨테이너 생성 및 실행: docker run -d --name my-ubuntu ubuntu:latest sleep infinity
+
+    <img width="1437" height="598" alt="image" src="https://github.com/user-attachments/assets/7a40753d-4469-4102-bc92-19e55b353636" />
+
+4. 우분트 안에서 또다른 우분트 환경에 들어가기 (도커 컨테이너 내부 들어가기)
+
+   4-1. docker exec -it my-ubuntu bash (실행 중인 컨테이너에서 계속 입력 받고 터미널 환경제공, 접속할 컨테이너 명, 실행할 셀 프로그램)
    
+   <img width="715" height="50" alt="image" src="https://github.com/user-attachments/assets/df698c70-8acd-488b-b4fd-97d962fcc6e6" />
+
+   root@xxxxxxxxxxxx: Docker 컨테이너 내부 환경, root는 컨테이너 내부의 관리자 계정, /는 컨테이너의 최상위 디렉터리
+
    
-
-
-
-
-
-
-
-
 
    
 
 
-
-
-  
-
    
 
 
-
-
-  
-
-
+   
