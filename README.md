@@ -222,7 +222,7 @@ Docker 설치
 
    <img width="970" height="194" alt="image" src="https://github.com/user-attachments/assets/1490b42f-9017-4394-9b74-3b23aa0dd024" />
 
-6. 도커파일 실습
+6. 도커파일 생성 빌드
 
    6-1. 실습폴더생성: mkdir docker-study
 
@@ -230,16 +230,19 @@ Docker 설치
 
    6-2. 도커파일작성하기: nano Dokerfile (DockerFile 오타로 mv DockerFile Dockerfile 명령어로 수정)
 
-         도커파일 작성: FROM ubuntu:latest(우분트에서 이미 만 기본 이미지)
-                       CMD["echo", "Hello Dockerfile!"] (컨테이너실행시 보이는 것) => 문자를 출력하는 이미지 만들기 위함.
+도커파일 작성: FROM ubuntu:latest(우분트에서 이미 만 기본 이미지)
+CMD["echo", "Hello Dockerfile!"] (컨테이너실행시 보이는 것) => 문자를 출력하는 이미지 만들기 위함.
 
-         도커파일빌드하는 법(만약 하나의 dir에 a_file, b_file 있을 때: docker build -t image1 . => a_file,  docker build -t image2 -f b_file . => b_file)  (" . "은 현재 dir 빌드 컨텍스트로 지정한다는 뜻) 
+
+도커파일빌드하는 법(만약 하나의 dir에 a_file, b_file 있을 때: docker build -t image1 . => a_file,
+     docker build -t image2 -f b_file . => b_file)  (" . "은 현재 dir 빌드 컨텍스트로 지정한다는 뜻)
 
    <img width="721" height="434" alt="image" src="https://github.com/user-attachments/assets/3ad89ec8-2ade-4664-b2cc-cf4ff8bb6abd" />
 
    6-3. 빌드 후 이미지 생성이 확인되면 이미지로 컨테이너 만들고 실행하기: docker run --name my-study-container my-docker-study
         
 <img width="832" height="86" alt="image" src="https://github.com/user-attachments/assets/baef26a0-927a-4f19-b238-d49f0c42dcbd" />
+
 
    6-4. 컨테이너 로그 확인: docker logs my-study-container (컨테이너 출력 로그 확인, 누적된 결과)
         컨테이너 다시 실행: docker start -a my-study-container (-a는 터미널에서 출력내용 보이게 하기)
@@ -253,6 +256,53 @@ Docker 설치
   6-6. 빌드한 이미지 삭제: docker image rm my-docker-study:latest (이미지 컨테이너는 도커가 관리하기 때문에 dir랑 상관X, 도커파일은 dir관리)
 
 <img width="982" height="192" alt="image" src="https://github.com/user-attachments/assets/daac697f-e09c-4101-ba67-9c720ab485a9" />
+
+7. 내 컴퓨터의 hello.txt를 Docker 이미지 내부의 /app/hello.txt로 복사하기
+
+<img width="351" height="152" alt="image" src="https://github.com/user-attachments/assets/5867512e-b7c2-47eb-9449-5c28b3115385" />
+
+nano Dockerfile로 도커파일 수정하기 (만약 빌드하고했는 데 파일에 오타가 있으면 파일 수정 후 다시 빌드하고 기존 컨테이너 삭제 후 다시 컨테이너 생성 실행 해야함)
+   
+<img width="742" height="59" alt="image" src="https://github.com/user-attachments/assets/34903ef3-9774-47c2-a8a2-9fc940e7e76d" />
+
+
+8. 도커파일에서 작업 디렉토리 지정
+
+ 컨테이너 실행이 이미지 내부 /app 디렉토리에서 이루어지게 할 때
+
+ <img width="226" height="201" alt="image" src="https://github.com/user-attachments/assets/4e26f9c3-e3d3-4ffb-9dbd-ad269a6fb2bd" />
+
+ pwd를 실행했으니 /app 현위치 나옴
+
+<img width="1071" height="50" alt="image" src="https://github.com/user-attachments/assets/b86f5516-c791-4e9d-91b0-c935a2d202d8" />
+
+  새 컨테이너 실행하고 Bash 실행: docker run -it --name workdir-test my-docker-study bash (-i 컨테이너입력, -t 터미널 환경 )
+
+<img width="1211" height="145" alt="image" src="https://github.com/user-attachments/assets/d5a6eaf7-eca7-4281-9741-d9daac9d922e" />
+
+WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 직접 확인할 수 있음 ↑
+
+
+<img width="686" height="205" alt="image" src="https://github.com/user-attachments/assets/503d65cd-5222-4d92-8932-219ace94920e" />
+
+같은 이미지로 여러 컨테이너를 생성할 수 있고 서로 독립적임.↑
+
+9. 도커볼륨 (웹 서비스에서 DB 같은 것)
+
+  9-1. 도커볼륨생성: docker volume create study-volume
+
+  <img width="914" height="119" alt="image" src="https://github.com/user-attachments/assets/ce9b2760-c063-44ed-bb25-a60ec11260b6" />
+
+  9-2.불륨을 컨테이너에 연결하기: docker run -it --name volume-test -v study-volume:/data ubuntu:latest bash
+
+  -v: 볼륨을 컨테이너 내부 /data에 연결
+
+  9-3.데이터 저장하기: 
+
+ 
+
+
+
 
 
 
