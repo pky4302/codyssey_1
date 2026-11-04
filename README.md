@@ -222,6 +222,43 @@ Docker 설치
 
    <img width="970" height="194" alt="image" src="https://github.com/user-attachments/assets/1490b42f-9017-4394-9b74-3b23aa0dd024" />
 
+6. 도커파일 실습
+
+   6-1. 실습폴더생성: mkdir docker-study
+
+   <img width="322" height="46" alt="image" src="https://github.com/user-attachments/assets/96b4064d-d443-4602-9c0e-02325085656c" />
+
+   6-2. 도커파일작성하기: nano Dokerfile (DockerFile 오타로 mv DockerFile Dockerfile 명령어로 수정)
+
+         도커파일 작성: FROM ubuntu:latest(우분트에서 이미 만 기본 이미지)
+                       CMD["echo", "Hello Dockerfile!"] (컨테이너실행시 보이는 것) => 문자를 출력하는 이미지 만들기 위함.
+
+         도커파일빌드하는 법(만약 하나의 dir에 a_file, b_file 있을 때: docker build -t image1 . => a_file,  docker build -t image2 -f b_file . => b_file)  (" . "은 현재 dir 빌드 컨텍스트로 지정한다는 뜻) 
+
+   <img width="721" height="434" alt="image" src="https://github.com/user-attachments/assets/3ad89ec8-2ade-4664-b2cc-cf4ff8bb6abd" />
+
+   6-3. 빌드 후 이미지 생성이 확인되면 이미지로 컨테이너 만들고 실행하기: docker run --name my-study-container my-docker-study
+        
+<img width="832" height="86" alt="image" src="https://github.com/user-attachments/assets/baef26a0-927a-4f19-b238-d49f0c42dcbd" />
+
+   6-4. 컨테이너 로그 확인: docker logs my-study-container (컨테이너 출력 로그 확인, 누적된 결과)
+        컨테이너 다시 실행: docker start -a my-study-container (-a는 터미널에서 출력내용 보이게 하기)
+        
+<img width="940" height="95" alt="image" src="https://github.com/user-attachments/assets/4bf0e6dd-6d77-483e-81c1-ea91f23e3929" />
+
+  6-5. 컨테이너 삭제 후 이미지 남아있는 지 확인: docker rm -f my-study-container
+
+<img width="635" height="158" alt="image" src="https://github.com/user-attachments/assets/7f5f4777-9780-4a70-bd6c-56a9fd410fe4" />
+
+  6-6. 빌드한 이미지 삭제: docker image rm my-docker-study:latest (이미지 컨테이너는 도커가 관리하기 때문에 dir랑 상관X, 도커파일은 dir관리)
+
+<img width="982" height="192" alt="image" src="https://github.com/user-attachments/assets/daac697f-e09c-4101-ba67-9c720ab485a9" />
+
+
+
+
+
+
 
 
 
