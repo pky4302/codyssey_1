@@ -293,11 +293,81 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
 
   <img width="914" height="119" alt="image" src="https://github.com/user-attachments/assets/ce9b2760-c063-44ed-bb25-a60ec11260b6" />
 
-  9-2.불륨을 컨테이너에 연결하기: docker run -it --name volume-test -v study-volume:/data ubuntu:latest bash
+  9-2.불륨을 컨테이너 내부와 연결하기: docker run -it --name volume-test -v study-volume:/data ubuntu:latest bash
 
-  -v: 볼륨을 컨테이너 내부 /data에 연결
+  -v: 볼륨을 컨테이너 내부 /data에 연결 (볼륨생성도 같이됨)
 
-  9-3.데이터 저장하기: 
+   그 후 컨테이너 내부에서 데이터 저장하기: echo "Docker Volume Data" > /data/hello.txt
+
+<img width="495" height="49" alt="image" src="https://github.com/user-attachments/assets/d5b3c25d-2187-481a-ae7b-23afa3af4079" />
+
+  9-3.컨테이너 삭제 후 데이터 확인하기
+
+      기존 컨테이너 삭제 후,
+      
+      새로운 컨테이너를 생성하고 study-volume과 연결하여 확인: docker run -it --name volume-test2 -v study-volume:/data ubuntu:latest bash
+
+<img width="1440" height="76" alt="image" src="https://github.com/user-attachments/assets/279dcc1f-4ad3-496c-884b-75d8ccf9e337" />
+
+볼륨에 저장된 것을 받아옴 확인↑
+
+ 9-4.볼륨삭제: docker volume rm study-volume
+
+10. 도커 -p(포트) 옵션으로 컨테이너 포트를 외부에 연결하기
+
+  10-1.Winodows 8080 포트로 들어온 요청을 컨테이너 80 포트로 전달하기: docker run -d --name web-test -p 8080:80 nginx:latest
+
+<img width="1186" height="355" alt="image" src="https://github.com/user-attachments/assets/cba8c041-25e3-4446-9e20-0af25c474a3f" />
+
+<img width="1839" height="74" alt="image" src="https://github.com/user-attachments/assets/2bd9604e-d347-48d7-9eb3-332a3791d41a" />
+
+  그리고 localhost:8080 에서 Nginx연결 확인 => Docker 컨테이너 내부에서 실행되는 웹 서버에 Windows 웹 브라우저로 접속하는 데 성공했다는 뜻, Nginx가 실행되고 있더라도 -p 옵션으로 포트연결하지 않으면 외부에 접속할 수 있도록 공개하지 않음
+
+   10-2. 도커 네트워크 확인법: docker network ls
+
+    bridge 기본, host 호스트, none 연결X
+
+    bridge는 Docker가 기본으로 제공하는 네트워크, 컨테이너 끼리 이름으로 통신 편함
+
+    10-3.사용자 정의 네트워크 만들기: docker network create study-network
+
+<img width="939" height="192" alt="image" src="https://github.com/user-attachments/assets/19663ca1-77f3-4b09-9f85-75e0c468fa71" />
+
+    10-4. 생성한 네트워크에 컨테이너 2개 연결하기: 
+      docker run -dit --name network-test1 --network study-network ubuntu:latest bash
+      docker run -dit --name network-test2 --network study-network ubuntu:latest bash
+
+      컨테이너 생성 후 네트워크 연결확인: docker network inspect study-network
+
+<img width="545" height="552" alt="image" src="https://github.com/user-attachments/assets/d4084e07-3cbe-4e63-8038-ea1c89c65c7a" />
+
+    10-5. 첫번째 컨테이너에서 두번째 컨테이너 찾기
+
+        첫번째 컨테이너 접속: docker exec -it network-test1 bash
+
+        접속 후 ping이라는 네트워크 통신 테스트 프로그램을 설치하고 컨테이너 간 통신 테스트하기
+
+<img width="1094" height="361" alt="image" src="https://github.com/user-attachments/assets/46620448-fbdc-4a91-aa3c-84d8eb1e9407" />
+
+         network-test2 컨테이너와 연결됨을 확임↑ 
+         (4번 통신 후 종료: ping -c 4 network-test2)
+      
+
+ 
+
+        
+
+
+
+  
+
+   
+
+      
+
+
+
+  
 
  
 
