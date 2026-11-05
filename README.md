@@ -366,15 +366,119 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
 
 <img width="941" height="382" alt="image" src="https://github.com/user-attachments/assets/8ea62e9f-2a46-45f4-9e85-efa72284569e" />
 
-    11-3. 도커컴포즈 실행: docker compose up -d
+    11-3. 도커컴포즈 설정에 따라 실행: docker compose up -d (만약 다른 yaml파일이 있으면 docker compose -f X.yaml up -d)
 
 <img width="949" height="122" alt="image" src="https://github.com/user-attachments/assets/f28d11fc-c1b4-4fb3-bebd-83f803e827ba" />
 
     Docker Compose는 컨테이너뿐만 아니라 네트워크도 자동으로 생성,직접 했던 작업을 Compose가 대신 처리한다
 
-     11-4. 컨테이너 실행상태확인: docker compose ps
+     11-4. 컨테이너 실행상태확인: docker compose ps, 만약 컨테이너 종료되면 다시 실행
 
 <img width="1742" height="70" alt="image" src="https://github.com/user-attachments/assets/197713a0-c6be-4a56-9bc8-b04dc69644a7" />
+
+     11-5. 컨테이너 실행 중지와 재시작(삭제는 안됨): docker compose stop, docker compose start
+
+<img width="821" height="267" alt="image" src="https://github.com/user-attachments/assets/05aca1c5-e159-4140-a5d5-dc2bf113ba26" />
+
+     11-6. 컨테이너 중지 후 삭제(이미지까지 삭제하지 않음): docker compose down
+
+<img width="944" height="144" alt="image" src="https://github.com/user-attachments/assets/d797dd75-48bb-40ee-8434-4f32106d0dc4" />
+
+    11-7. 삭제된 컨테이너를 컴포즈설정에 따라 다시 생성 실행: docker compose up -d
+
+ <img width="1656" height="166" alt="image" src="https://github.com/user-attachments/assets/82a38951-145a-493d-8a84-d8352af484f6" />
+
+
+12. 컴포즈로 개발환경과 운영환경 분리
+
+    12-1. 운영환경,개발환경 yaml만들고 실행 : docker compose -f compose.yaml up -d 그리고 docker compose -f compose-dev.yaml up -d
+
+    하지만 두  yaml파일이 같은 컴포즈 프로젝트 이름을 사용하고 있으면 두 yaml파일을 같은 프로젝트로 인식해 운영환경을 실행하면 개발환경이 꺼지고 개발환경을 실행하면 운영환경이 꺼지는 증상이 생김. 
+
+<img width="842" height="121" alt="image" src="https://github.com/user-attachments/assets/7baa25ba-03eb-4da7-bfd1-74ff026348ea" />
+
+    이를 해결하기 위해 -p로 프로젝트 이름을 분리해야 한다. 컴포즈 프로젝트 이름을 분리하면 같은 디렉터리의 설정 파일을 사용하더라도 서로 독립적으로 관리할 수 있어.
+
+    운영: docker compose -p main -f compose.yaml up -d
+    개발: docker compose -p dev -f compose.yaml up -d
+
+    실행 후 별도 프로젝트를 조회해야함
+    
+<img width="1182" height="467" alt="image" src="https://github.com/user-attachments/assets/c99e2cee-ae5a-4b2d-b810-589375361eee" />
+
+<img width="1159" height="466" alt="image" src="https://github.com/user-attachments/assets/2b3f069f-3f80-486c-9fcf-641923e343dc" />
+
+<img width="899" height="73" alt="image" src="https://github.com/user-attachments/assets/ab43f45b-2de4-4f9c-ab28-787ac29b18d5" />
+
+     12-2. 컴포즈 환경변수 사용하기
+
+           compose-env.yaml 파일 만든 후 생성 실행하기
+           
+ <img width="431" height="250" alt="image" src="https://github.com/user-attachments/assets/e2d1663e-821c-467f-81c5-aad21a2c013d" />
+
+<img width="1713" height="80" alt="image" src="https://github.com/user-attachments/assets/787bbe2c-6aec-403d-9a6b-dcea823f2a31" />
+
+    12-3. 컨테이너 내부로 들어가 환경변수 확인하기
+
+<img width="523" height="98" alt="image" src="https://github.com/user-attachments/assets/fe527c8d-0aef-4f34-b82c-db7bd18e37ec" />
+
+       compose-env.yaml의 environment에 설정한 값이 컨테이너 내부의 환경변수로 전달된 것을 확인할 수 있음.
+
+    12-4. 컨테이너 내부의 환경변수를 직접 가지고 있지 않고 .env를 만들고 그곳에서 가져오기
+
+       .env 파일 ↓
+             
+  <img width="255" height="93" alt="image" src="https://github.com/user-attachments/assets/0345f845-9b0a-4a64-8de4-506ba5bcf186" />
+
+        compose-env.yaml 수정 ↓
+       
+<img width="441" height="245" alt="image" src="https://github.com/user-attachments/assets/2432a47a-6f8a-4b02-817a-550b20b72a7e" />
+
+         다시 컴포즈 생성 실행 후 컨테이너에 들어가면 .env에서 가져오는 것을 확인할 수 있음
+
+<img width="505" height="99" alt="image" src="https://github.com/user-attachments/assets/3212ce7b-c6ab-4814-9baf-43bd5d576b7d" />
+
+
+       
+
+
+
+ 
+
+ 
+
+ 
+
+
+ 
+
+
+        
+
+
+
+
+    
+
+
+
+    
+
+    
+
+
+
+
+
+ 
+
+
+
+
+     
+
+     
+     
 
 
 
