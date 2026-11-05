@@ -439,6 +439,46 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
 <img width="505" height="99" alt="image" src="https://github.com/user-attachments/assets/3212ce7b-c6ab-4814-9baf-43bd5d576b7d" />
 
 
+13. 컴포즈로 두 개의 컨테이너를 연결하기 (웹서버 Nginx와 데이터베이스 컨테이너)
+    
+    13-1. 웹서버와 데이터베이스 컨테이너 만드는 .yaml파일 생성
+  
+    <img width="447" height="553" alt="image" src="https://github.com/user-attachments/assets/140ebc3c-a7f2-4e6b-97cd-b5f6e96d4334" />
+
+    13-2. docker compose -f compose-mysql.yaml config를 확인하여 두 컨테이너가 같은 네트워크에 있는 지 확인
+
+<img width="610" height="470" alt="image" src="https://github.com/user-attachments/assets/be9688fe-430e-42c7-9909-6f00913e92b2" />
+
+      네트워크는 프로젝트에 사용할 네트워크를 자동 생성하고 프로젝트 이름을 따서 생성, db 서비스는 yaml에 데이터저장위치에 도커볼륨
+      을 연결하겠다 했으니 mysql-data라는 볼륨을 프로젝트 명 뒤에 붙여생성 ↑
+
+    13-3. docker compose -f compose-mysql.yaml up -d 컨테이너, 네트워크, 볼륨 동시 생성
+
+<img width="872" height="206" alt="image" src="https://github.com/user-attachments/assets/54835dda-c2f6-4028-baea-a6fbec7f7ea8" />
+
+    13-4. web컨테이너 Nginx 내부에서 MysSQL컨테이너 서비스이름(db) 찾기: getent hosts db
+
+<img width="1135" height="71" alt="image" src="https://github.com/user-attachments/assets/0a589f40-74f3-433d-beb6-9debec84794f" />
+
+         mysql-study-web 컨테이너에서 db서비스 이름을 조회했을 때 도커가 MySQL 컨테이너의 내부 IP 주소를 알려준 것
+
+    13-5. MySQL 컨테이너에 study_user 계정으로 접속확인
+
+<img width="1433" height="357" alt="image" src="https://github.com/user-attachments/assets/8f35b1f1-0406-4aa5-a1a0-57cef5120539" />
+
+    13-6. 
+
+
+     
+
+    
+
+
+    
+    
+
+
+
        
 
 
