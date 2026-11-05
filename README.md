@@ -357,18 +357,22 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
 
     도커컴포즈 설치확인: docker compose version => Docker Compose version v5.6.1
 
-    11-1 도커컴포즈폴더 만들고 그곳에서 nano compose.yaml 작성
+    11-1 도커컴포즈폴더 만들고 그곳에서 nano compose.yaml 작성 (도커컴포즈환경설정)
 
 <img width="386" height="170" alt="image" src="https://github.com/user-attachments/assets/29ef9468-146e-437e-8862-e5b68314e6af" />
 
 
     11-2. 도커컴포즈 설정확인: docker compose config
 
-<img width="941" height="97" alt="image" src="https://github.com/user-attachments/assets/b2c3e86d-38f8-4766-818c-240c1ea492c8" />
+<img width="941" height="382" alt="image" src="https://github.com/user-attachments/assets/8ea62e9f-2a46-45f4-9e85-efa72284569e" />
+
+    11-3. 도커컴포즈 실행: docker compose up -d
+
+<img width="949" height="122" alt="image" src="https://github.com/user-attachments/assets/f28d11fc-c1b4-4fb3-bebd-83f803e827ba" />
 
     Docker Compose는 컨테이너뿐만 아니라 네트워크도 자동으로 생성,직접 했던 작업을 Compose가 대신 처리한다
 
-     11-3. 컨테이너 실행상태확인: docker compose ps
+     11-4. 컨테이너 실행상태확인: docker compose ps
 
 <img width="1742" height="70" alt="image" src="https://github.com/user-attachments/assets/197713a0-c6be-4a56-9bc8-b04dc69644a7" />
 
