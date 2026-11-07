@@ -452,6 +452,9 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
       네트워크는 프로젝트에 사용할 네트워크를 자동 생성하고 프로젝트 이름을 따서 생성, db 서비스는 yaml에 데이터저장위치에 도커볼륨
       을 연결하겠다 했으니 mysql-data라는 볼륨을 프로젝트 명 뒤에 붙여생성 ↑
 
+<img width="554" height="74" alt="image" src="https://github.com/user-attachments/assets/96f5ba6c-480d-4f03-b7c3-c22b10e4fbfe" />
+
+
     13-3. docker compose -f compose-mysql.yaml up -d 컨테이너, 네트워크, 볼륨 동시 생성
 
 <img width="872" height="206" alt="image" src="https://github.com/user-attachments/assets/54835dda-c2f6-4028-baea-a6fbec7f7ea8" />
@@ -462,103 +465,53 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
 
          mysql-study-web 컨테이너에서 db서비스 이름을 조회했을 때 도커가 MySQL 컨테이너의 내부 IP 주소를 알려준 것
 
-    13-5. MySQL 컨테이너에 study_user 계정으로 접속확인
+    13-5. MySQL 컨테이너에 study_user 계정으로 접속확인 후 member 테이블 생성(MySQL-study-db 컨테이너에서 MySQL 서버 접속):
+    docker exec -it mysql-study-db mysql -u study_user -p study_db
 
 <img width="1433" height="357" alt="image" src="https://github.com/user-attachments/assets/8f35b1f1-0406-4aa5-a1a0-57cef5120539" />
 
-    13-6. 
+    13-6. 컨테이너 삭제하기: docker compose -f compose-mysql.yaml down
 
+<img width="1224" height="288" alt="image" src="https://github.com/user-attachments/assets/ffef7fa7-d6ba-4df8-846a-56e73bae9802" />
 
-     
+    13-7. 컨테이너 삭제 후 볼륨 영속성확인
 
-    
+<img width="875" height="74" alt="image" src="https://github.com/user-attachments/assets/f98d06bd-43d4-474e-809c-1141af83efd4" />
 
-
-    
-    
-
-
-
-       
-
-
-
- 
-
- 
-
- 
-
-
- 
-
-
-        
-
-
-
-
-    
-
-
-
-    
-
-    
-
-
-
-
-
- 
-
-
-
-
-     
-
-     
-     
-
-
-
-
-    
-
-
-    
-
-        
-
-
-
-  
+    컴포즈로 생성 실행했을 때 만든 볼륨이 존재함 ↑
 
    
+   13-8. 이전 컨테이너 삭제하고 다시 컨테이너 생성해도 볼륨은 기존 것 재사용됨
 
-      
+     => 만약 볼륨이 없었더라면 MySQL 컨테이너 안에 데이터가 저장된다 해도 컨테이너 삭제 하면 컨테이너 내부에만 저장된 데이터는
+     사라질 수 있음
+        하지만, 볼륨을 사용하면 MySQL 서버가 볼륨에 데이터를 읽고 쓰는 역할을 하기 때문에 컨테이너를 삭제해도 볼륨의 영속성 때문에
+        데이터를 보존할 수 있음
+     =>  MySQL 서버는 데이터를 관리하는 프로그램이고, Docker 볼륨은 그 데이터가 지속적으로 저장되는 공간임.
 
+<img width="1432" height="816" alt="image" src="https://github.com/user-attachments/assets/a3bf87d3-8fc4-47a3-a601-d3caa2bbb658" />
 
-
-  
-
- 
-
-
-
-
-
-
+        맨처음 컨테이너 만들었을 때 MySQL서버에서 member 테이블을 만든 것이 컨테이너 삭제 후 다시 생성해도 볼륨을 읽어들여
+        볼 수 있음을 확인할 수 있음.
 
 
+   13-9. 임시로 만든 클라이언트 컨테이너에서 MySQL 서버 접속 :
+   docker run --rm -it --network compose-study_default mysql:8.4 mysql -h db -u study_user -p study_db
 
+<img width="1873" height="652" alt="image" src="https://github.com/user-attachments/assets/e272631b-bed7-45c4-8756-7763bac8d03e" />
 
-
-
-
-
-
-
-
-
+   기존 컴포즈 네트워크를 쓰고 MySql서버 service이름(db)를 찾아 Mysql 접속 후 임시컨테이너 종료되면 자동삭제하는 명령어 ↑
    
+
+14. MySQL 서버 로그 및 Nginx 웹서버 로그 확인
+
+    14-1. MySQL 서비스 로그확인: docker compose -f compose-mysql.yaml logs db --tail 20
+
+<img width="431" height="60" alt="image" src="https://github.com/user-attachments/assets/23c0cb7f-bb22-4d4d-ada0-ddf7faed3a57" />
+
+<img width="1337" height="26" alt="image" src="https://github.com/user-attachments/assets/37f385a7-5b3f-48fa-b015-b9699c24592e" />
+
+    14-2. Nginx 웹 서버 접속 확인: curl http://localhost:8085
+
+ <img width="991" height="669" alt="image" src="https://github.com/user-attachments/assets/199967fd-b3e2-4f81-8caf-0be52359fae8" />
+
