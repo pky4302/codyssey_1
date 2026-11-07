@@ -559,7 +559,8 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
 
     13-2. docker compose -f compose-mysql.yaml config를 확인하여 두 컨테이너가 같은 네트워크에 있는 지 확인
 
-<img width="610" height="470" alt="image" src="https://github.com/user-attachments/assets/be9688fe-430e-42c7-9909-6f00913e92b2" />
+<img width="601" height="467" alt="image" src="https://github.com/user-attachments/assets/65527351-7fd8-41f1-a03e-8651c8d9b278" />
+
 
       네트워크는 프로젝트에 사용할 네트워크를 자동 생성하고 프로젝트 이름을 따서 생성, db 서비스는 yaml에 데이터저장위치에 도커볼륨
       을 연결하겠다 했으니 mysql-data라는 볼륨을 프로젝트 명 뒤에 붙여생성 ↑
