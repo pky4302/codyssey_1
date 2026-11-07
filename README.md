@@ -515,3 +515,41 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
 
  <img width="991" height="669" alt="image" src="https://github.com/user-attachments/assets/199967fd-b3e2-4f81-8caf-0be52359fae8" />
 
+
+_______________________________________________________________________________________________________________________
+
+
+깃 연동
+
+1. 깃 계정 접속 후 클론 생성
+
+<img width="496" height="154" alt="image" src="https://github.com/user-attachments/assets/17578216-da2b-4c07-ad58-73146dd4550e" />
+
+2. 현재 브랜치 확인 후 dev1 브랜치 만들고 작업 파일 올리기
+
+<img width="734" height="131" alt="image" src="https://github.com/user-attachments/assets/751ac006-39c0-43c0-9876-ab06a315c62f" />
+
+3. 커밋 후 푸시
+
+   <img width="888" height="82" alt="image" src="https://github.com/user-attachments/assets/08d6e3f0-686d-45bc-b836-6c0064e91232" />
+
+   <img width="784" height="548" alt="image" src="https://github.com/user-attachments/assets/9a28c09c-7a01-4469-9926-c86d1c81adbb" />
+
+4. 실수로 푸시해버린 커밋 취소하기
+
+   4-1. 로컬 커밋 확인하기
+
+<img width="695" height="212" alt="image" src="https://github.com/user-attachments/assets/b0008de8-e864-407b-9a82-a56c3ccc3f33" />
+
+   4-2. 되돌릴(취소)할 커밋확인
+   
+<img width="749" height="101" alt="image" src="https://github.com/user-attachments/assets/ab3b95a9-919d-4926-88e0-4586cd98bca1" />
+
+   4-3. 커밋되돌리기(변경사항취소)
+
+   <img width="758" height="337" alt="image" src="https://github.com/user-attachments/assets/35788ba6-ce39-44fc-a1aa-ad2231388981" />
+
+
+
+
+
