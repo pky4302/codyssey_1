@@ -290,8 +290,13 @@ Docker 설치
 
 <img width="1181" height="74" alt="image" src="https://github.com/user-attachments/assets/af96e8f2-edc0-4763-b4c4-db8ce2cbf490" />
 
-    attach와 exec의 차이점: 
+      하지만, exit 하면 컨테이너가 종료됨을 확인할 수 있음 ↓
 
+<img width="837" height="49" alt="image" src="https://github.com/user-attachments/assets/47963a5b-111d-4c5d-b9ee-74ca848c0abd" />
+
+    attach와 exec의 차이점: 
+        -attach: 컨테이너 내부 bash 프로그램을 사용하니 종료하면 컨테이너도 종료됨.
+        -exec: 컨테이너 내부 메인 bash를 사용하는 것이 아니라 새로운 bash 프로그램을 생성하기에 그것이 꺼진다해도 메인이 살아있는 한 컨테이너는 살아있다.
     
  
 
@@ -544,7 +549,8 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
     
     13-1. 웹서버와 데이터베이스 컨테이너 만드는 .yaml파일 생성
   
-    <img width="447" height="553" alt="image" src="https://github.com/user-attachments/assets/140ebc3c-a7f2-4e6b-97cd-b5f6e96d4334" />
+    <img width="338" height="413" alt="image" src="https://github.com/user-attachments/assets/68ec66c8-1887-4ec5-909e-8f327c7c3644" />
+
 
     13-2. docker compose -f compose-mysql.yaml config를 확인하여 두 컨테이너가 같은 네트워크에 있는 지 확인
 
@@ -649,8 +655,6 @@ ________________________________________________________________________________
    4-3. 커밋되돌리기(변경사항취소)
 
    <img width="758" height="337" alt="image" src="https://github.com/user-attachments/assets/35788ba6-ce39-44fc-a1aa-ad2231388981" />
-
-
 
 
 
