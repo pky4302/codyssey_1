@@ -288,11 +288,16 @@ Docker 설치
 
    -d: 백그라운드실행, -i 표준입력유지, -t 가상터미널 할당
 
-<img width="1181" height="74" alt="image" src="https://github.com/user-attachments/assets/af96e8f2-edc0-4763-b4c4-db8ce2cbf490" />
+<img width="1181" height="99" alt="image" src="https://github.com/user-attachments/assets/930f04d0-96d2-428f-a482-6adfb25e2755" />
 
       하지만, exit 하면 컨테이너가 종료됨을 확인할 수 있음 ↓
 
 <img width="837" height="49" alt="image" src="https://github.com/user-attachments/assets/47963a5b-111d-4c5d-b9ee-74ca848c0abd" />
+
+      다시 내부로 들어가려면 컨테이너를 실행 후 docker attach 명령어를 사용하면 된다.
+
+<img width="836" height="108" alt="image" src="https://github.com/user-attachments/assets/053f2652-d7c8-408e-b06d-d48abb53a00f" />
+
 
     attach와 exec의 차이점: 
         -attach: 컨테이너 내부 bash 프로그램을 사용하니 종료하면 컨테이너도 종료됨.
