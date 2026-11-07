@@ -284,6 +284,17 @@ Docker 설치
 
    <img width="230" height="35" alt="image" src="https://github.com/user-attachments/assets/0423aa31-a823-48dd-9669-d47aabf8e814" />
 
+   4-6. attach로 내부 접근하는 법: docker run -dit --name attach-study ubuntu bash
+
+   -d: 백그라운드실행, -i 표준입력유지, -t 가상터미널 할당
+
+<img width="1181" height="74" alt="image" src="https://github.com/user-attachments/assets/af96e8f2-edc0-4763-b4c4-db8ce2cbf490" />
+
+    attach와 exec의 차이점: 
+
+    
+ 
+
 5. 실행중인 컨테이너 확인하고 중지하고 다시 실행하고 삭제하기
 
    5-1. my-ubuntu 컨테이너 확인: docker ps
