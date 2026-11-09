@@ -398,7 +398,7 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
 
 같은 이미지로 여러 컨테이너를 생성할 수 있고 서로 독립적임.↑
 
-9. 도커볼륨 (웹 서비스에서 DB 같은 것)
+9. 도커볼륨 (웹 서비스에서 DB 같은 것)과 바인드 마운트
 
   9-1. 도커볼륨생성: docker volume create study-volume
 
@@ -423,6 +423,42 @@ WORKDIR /app이 컨테이너의 기본 작업 위치로 적용된다는 것을 �
 볼륨에 저장된 것을 받아옴 확인↑
 
  9-4.볼륨삭제: docker volume rm study-volume
+
+ 9-5. <바인드 마운드>
+ 
+     9-5-1. 바인드 마운드 실습 test.txt 생성
+
+<img width="1141" height="70" alt="image" src="https://github.com/user-attachments/assets/9dddee21-d473-42cc-8204-89fe822cf623" />
+
+     9-5-2. 현재 WSL 폴더와 컨테이너의 /app폴더 연결하기
+     
+     docker run -dit --name bind-mount-study -v "$(pwd):/app" ubuntu:latest bash
+
+<img width="1624" height="46" alt="image" src="https://github.com/user-attachments/assets/87035312-f2c5-4c82-881c-e692d317c4c7" />
+
+      연결 후 컨테이너 ID 확인할 수 있음.
+
+      후 컨테이너 내부로 들어가 파일 확인: docker exec -it bind-mount-study bash
+
+<img width="1169" height="217" alt="image" src="https://github.com/user-attachments/assets/a58442b5-a5c6-4aec-8147-c2920e021149" />
+
+      그리고, 컨테이너에서 수정한 파일이 WSL에도 반영되는 지 확인: 내부에서 echo "Docker Container에서 수정!" >> test.txt 실행
+
+<img width="806" height="93" alt="image" src="https://github.com/user-attachments/assets/a6494ba1-bb73-4f26-a7c4-da9a817109a4" />
+
+      내부로 나와서 cat test.txt를 했을 때 컨테이너에서 수정한 것과 똑같은 결과를 확인할 수 있다.
+
+<img width="866" height="74" alt="image" src="https://github.com/user-attachments/assets/bb8d7513-0a03-471d-90f5-9619733e8db8" />
+
+    즉, WSL 폴더와 컨테이너의 /app이 연결되어 있기 때문에 컨테이너에서 파일을 수정해도 WSL의 원본 파일이 함께 수정되는 것.
+    그래서 WSL에서 수정 후 컨테이너 내부로 확인해도 수정됨.
+      
+    컨테이너 삭제 후 WSL 내용확인
+
+<img width="1069" height="192" alt="image" src="https://github.com/user-attachments/assets/e7236e75-078a-49ab-8215-b56fda2d2bb5" />
+
+    => 파일의 실제 저장 위치가 WSL의 폴더이기 때문. 컨테이너는 그 폴더를 연결해서 사용했을 뿐이다.
+
 
 10. 도커 -p(포트) 옵션으로 컨테이너 포트를 외부에 연결하기
 
